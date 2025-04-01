@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart HR System - Elevate Employee Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#6366F1',
+                        dark: {
+                            bg: '#181818',
+                            card: '#222222',
+                            text: '#E5E7EB'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Listen for changes in color scheme preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(93, 92, 222, 0.1), 0 10px 10px -5px rgba(93, 92, 222, 0.04);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #5D5CDE 0%, #6366F1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(93, 92, 222, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+        }
+        
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, rgba(93, 92, 222, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-dark-bg text-gray-800 dark:text-dark-text min-h-screen">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white dark:bg-dark-bg shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-cubes text-primary text-2xl"></i>
+                    <span class="font-bold text-xl">SmartHR</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="font-medium hover:text-primary transition-colors">Features</a>
+                    <a href="#cta" class="font-medium hover:text-primary transition-colors">Get Started</a>
+                    <a href="#contact" class="font-medium hover:text-primary transition-colors">Contact</a>
+                </div>
+                <button class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg shadow-md transition-all transform hover:scale-105">
+                    Demo
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden py-20 md:py-32 gradient-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Smart HR System</span>: Elevate Employee Experience
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">
+                    Transform Your Workplace: Engage, Empower, and Optimize Your Workforce for Unprecedented Productivity and Satisfaction.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
+                    <button class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-lg shadow-lg font-medium transition-all transform hover:scale-105">
+                        Get Started
+                    </button>
+                    <button class="bg-white dark:bg-dark-card text-primary border border-primary px-8 py-4 rounded-lg shadow-lg font-medium transition-all transform hover:scale-105">
+                        Book a Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-1/4 left-20 w-64 h-64 bg-primary opacity-5 rounded-full filter blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-1/3 right-20 w-80 h-80 bg-secondary opacity-5 rounded-full filter blur-3xl animate-pulse-slow"></div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Core Features</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">Powerful tools designed to transform your HR processes and employee experience.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white dark:bg-dark-card rounded-xl shadow-md p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tailored Professional Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Empower your team with personalized learning paths and skill-building resources designed to enhance career growth and job satisfaction.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn more <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white dark:bg-dark-card rounded-xl shadow-md p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Data-Driven Performance Enhancement</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Leverage analytics to provide actionable insights, set meaningful goals, and offer constructive feedback, fostering continuous improvement and recognition.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn more <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white dark:bg-dark-card rounded-xl shadow-md p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Seamless Communication and Collaboration</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Enhance team synergy with integrated communication platforms, project management tools, and virtual collaboration features to support a dynamic work environment.
+                    </p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        Learn more <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your HR Experience?</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-10">
+                    Discover how Smart HR can revolutionize your employee experience today.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-lg shadow-lg font-medium transition-all transform hover:scale-105">
+                        Request a Demo
+                    </button>
+                    <button class="bg-white dark:bg-dark-card text-gray-700 dark:text-white px-8 py-4 rounded-lg shadow-lg font-medium transition-all transform hover:scale-105">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">Hear from organizations that have transformed their workplace with Smart HR.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-primary">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "Since implementing Smart HR, our employee engagement scores have increased by 40% and turnover has decreased by 25%. The personalized development paths have been a game-changer for our team."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">VP of Human Resources, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-primary">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "The data-driven insights from Smart HR have completely transformed our performance review process. We're now able to provide meaningful feedback that actually drives growth and development."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">CEO, GrowthWave Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-50 dark:bg-dark-card">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-cubes text-primary text-2xl"></i>
+                        <span class="font-bold text-xl">SmartHR</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-md">
+                        Transforming workplaces with innovative HR solutions that prioritize the employee experience and drive organizational success.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full flex items-center justify-center text-primary hover:bg-opacity-20 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full flex items-center justify-center text-primary hover:bg-opacity-20 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-full flex items-center justify-center text-primary hover:bg-opacity-20 transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Features</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Pricing</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Testimonials</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-globe text-primary mr-2"></i>
+                            <a href="http://www.smarthr.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary">www.smarthr.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-2"></i>
+                            <a href="mailto:info@smarthr.com" class="text-gray-600 dark:text-gray-300 hover:text-primary">info@smarthr.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-2"></i>
+                            <span class="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center text-gray-500 dark:text-gray-400">
+                <p>&copy; 2023 Smart HR System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demoModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <!-- Backdrop -->
+            <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" id="modalBackdrop"></div>
+            
+            <!-- Modal Content -->
+            <div class="relative bg-white dark:bg-dark-bg rounded-lg shadow-xl max-w-4xl w-full mx-auto z-10 transition-all transform">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                        Smart HR Performance Review Analysis
+                    </h3>
+                    <button id="closeModal" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="px-6 py-4">
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 dark:border-gray-700 mb-6">
+                        <ul class="flex flex-wrap -mb-px">
+                            <li class="mr-2">
+                                <button id="uploadTab" class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 border-primary text-primary" aria-current="page">Upload Review</button>
+                            </li>
+                            <li class="mr-2">
+                                <button id="resultsTab" class="inline-block py-2 px-4 text-sm font-medium text-center text-gray-500 dark:text-gray-400 border-b-2 border-transparent hover:border-gray-300">View Results</button>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Upload Form -->
+                    <div id="uploadSection" class="mb-6">
+                        <div class="mb-6">
+                            <p class="mb-4 text-gray-700 dark:text-gray-300">
+                                Upload your performance review document to receive an analysis of your goals based on the SMART criteria (Specific, Measurable, Achievable, Relevant, and Time-bound).
+                            </p>
+                            <p class="mb-4 text-gray-700 dark:text-gray-300">
+                                <strong>Note:</strong> This is a demo. Your data remains private and is not stored on our servers.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Employee Name
+                            </label>
+                            <input type="text" id="employeeName" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-base bg-white dark:bg-dark-card text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Upload Performance Review
+                            </label>
+                            <div class="flex items-center justify-center w-full">
+                                <label for="fileInput" class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-opacity-10">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-3"></i>
+                                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Excel, Word, or PDF (MAX. 10MB)</p>
+                                    </div>
+                                    <input id="fileInput" type="file" class="hidden" accept=".xlsx,.xls,.doc,.docx,.pdf,.txt">
+                                </label>
+                            </div>
+                            <div id="fileInfo" class="mt-2 text-sm text-gray-500 dark:text-gray-400 hidden">
+                                <span id="fileName"></span>
+                                <button id="removeFile" class="ml-2 text-primary hover:text-secondary">
+                                    <i class="fas fa-times"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Goal Information
+                            </label>
+                            <textarea id="goalInput" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-base bg-white dark:bg-dark-card text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Paste your goal information here or upload a file above"></textarea>
+                        </div>
+                        
+                        <div class="flex justify-end">
+                            <button id="analyzeGoal" class="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg shadow-md transition-all transform hover:scale-105">
+                                Analyze Goal
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div id="resultsSection" class="hidden mb-6">
+                        <div id="loadingResults" class="hidden">
+                            <div class="flex items-center justify-center py-10">
+                                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+                            </div>
+                            <p class="text-center text-gray-600 dark:text-gray-400">Analyzing your goal against SMART criteria...</p>
+                        </div>
+                        
+                        <div id="analysisResults" class="hidden bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Demo Modal Functionality
+        const demoModal = document.getElementById('demoModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const closeModal = document.getElementById('closeModal');
+        const uploadTab = document.getElementById('uploadTab');
+        const resultsTab = document.getElementById('resultsTab');
+        const uploadSection = document.getElementById('uploadSection');
+        const resultsSection = document.getElementById('resultsSection');
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const removeFile = document.getElementById('removeFile');
+        const analyzeGoal = document.getElementById('analyzeGoal');
+        const loadingResults = document.getElementById('loadingResults');
+        const analysisResults = document.getElementById('analysisResults');
+        const employeeName = document.getElementById('employeeName');
+        const goalInput = document.getElementById('goalInput');
+        
+        // Demo button click - open modal
+        document.querySelector('nav button').addEventListener('click', () => {
+            demoModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        });
+        
+        // Close modal methods
+        const closeModalFunction = () => {
+            demoModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        };
+        
+        closeModal.addEventListener('click', closeModalFunction);
+        modalBackdrop.addEventListener('click', closeModalFunction);
+        
+        // Tab switching
+        uploadTab.addEventListener('click', () => {
+            uploadTab.classList.add('text-primary', 'border-primary');
+            uploadTab.classList.remove('text-gray-500', 'border-transparent');
+            resultsTab.classList.remove('text-primary', 'border-primary');
+            resultsTab.classList.add('text-gray-500', 'border-transparent');
+            
+            uploadSection.classList.remove('hidden');
+            resultsSection.classList.add('hidden');
+        });
+        
+        resultsTab.addEventListener('click', () => {
+            resultsTab.classList.add('text-primary', 'border-primary');
+            resultsTab.classList.remove('text-gray-500', 'border-transparent');
+            uploadTab.classList.remove('text-primary', 'border-primary');
+            uploadTab.classList.add('text-gray-500', 'border-transparent');
+            
+            uploadSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+        });
+        
+        // File upload handling
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                fileName.textContent = file.name;
+                fileInfo.classList.remove('hidden');
+                
+                // For demo purposes, we'll simulate reading the file
+                // In a real app, you would parse the file contents here
+                if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+                    goalInput.value = "Implement a new customer feedback system by Q3 2023";
+                } else {
+                    goalInput.value = "Improve team collaboration";
+                }
+            }
+        });
+        
+        // Remove file
+        removeFile.addEventListener('click', () => {
+            fileInput.value = '';
+            fileInfo.classList.add('hidden');
+            // Don't clear goal input so user can still test with manually entered goals
+        });
+        
+        // Analyze goal
+        analyzeGoal.addEventListener('click', () => {
+            const name = employeeName.value || 'Employee';
+            const goal = goalInput.value.trim();
+            
+            if (!goal) {
+                alert('Please enter a goal or upload a file containing your goals');
+                return;
+            }
+            
+            // Switch to results tab
+            resultsTab.click();
+            
+            // Show loading
+            loadingResults.classList.remove('hidden');
+            analysisResults.classList.add('hidden');
+            
+            // Simulate analysis delay
+            setTimeout(() => {
+                loadingResults.classList.add('hidden');
+                analysisResults.classList.remove('hidden');
+                
+                // Generate analysis based on input
+                let analysis, isSmart;
+                
+                if (goal.toLowerCase().includes('implement') && goal.toLowerCase().includes('by q3')) {
+                    // This is already a SMART goal
+                    isSmart = true;
+                    analysis = generateSmartAnalysis(name, goal);
+                } else {
+                    // This needs improvement
+                    isSmart = false;
+                    analysis = generateNonSmartAnalysis(name, goal);
+                }
+                
+                // Display results
+                analysisResults.innerHTML = analysis;
+            }, 2000);
+        });
+        
+        // Generate analysis for SMART goals
+        function generateSmartAnalysis(name, goal) {
+            const goalDescription = "Implement a new customer feedback system to increase response rates and improve service quality";
+            
+            return `
+                <div class="space-y-4">
+                    <div class="p-3 bg-green-100 dark:bg-green-900 dark:bg-opacity-20 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-medium text-green-800 dark:text-green-300">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            This goal meets all SMART criteria!
+                        </p>
+                    </div>
+                    
+                    <div class="prose dark:prose-invert max-w-none">
+                        <p>Dear ${name},</p>
+                        
+                        <p>After reviewing your goal, here is the feedback on your goal-setting process:</p>
+                        
+                        <p><strong>Goal:</strong> ${goal}</p>
+                        <p><strong>Goal Description:</strong> ${goalDescription}</p>
+                        
+                        <h4>1. Evaluation of SMART Criteria:</h4>
+                        <ul>
+                            <li><strong>Specific:</strong> ✓ (The goal clearly defines what needs to be implemented - a customer feedback system)</li>
+                            <li><strong>Measurable:</strong> ✓ (Success can be measured by the implementation and functioning of the system)</li>
+                            <li><strong>Achievable:</strong> ✓ (Implementing a feedback system is realistic with the right resources)</li>
+                            <li><strong>Relevant:</strong> ✓ (This aligns with improving customer service and satisfaction)</li>
+                            <li><strong>Time-bound:</strong> ✓ (Due by Q3 2023, which provides a clear deadline)</li>
+                        </ul>
+                        
+                        <h4>2. Positive Reinforcement:</h4>
+                        <p>Excellent work on crafting a well-defined SMART goal! Your goal clearly specifies what needs to be accomplished, how success will be measured, appears achievable with company resources, is relevant to improving customer satisfaction, and includes a specific timeframe. This structured approach will help ensure focused effort and clear expectations.</p>
+                        
+                        <p>Feel free to reach out if you need any assistance during the implementation process.</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Generate analysis for non-SMART goals
+        function generateNonSmartAnalysis(name, goal) {
+            const goalDescription = goal.length > 30 ? goal : "Improve overall team collaboration and communication";
+            
+            return `
+                <div class="space-y-4">
+                    <div class="p-3 bg-yellow-100 dark:bg-yellow-900 dark:bg-opacity-20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                        <p class="font-medium text-yellow-800 dark:text-yellow-300">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            This goal needs some refinement to fully meet the SMART criteria.
+                        </p>
+                    </div>
+                    
+                    <div class="prose dark:prose-invert max-w-none">
+                        <p>Dear ${name},</p>
+                        
+                        <p>After reviewing your goal, here is the feedback on your goal-setting process:</p>
+                        
+                        <p><strong>Goal:</strong> ${goal}</p>
+                        <p><strong>Goal Description:</strong> ${goalDescription}</p>
+                        
+                        <h4>1. Evaluation of SMART Criteria:</h4>
+                        <ul>
+                            <li><strong>Specific:</strong> ✗ (The goal lacks specificity about what aspects of collaboration will be improved and how)</li>
+                            <li><strong>Measurable:</strong> ✗ (There are no clear metrics to determine if collaboration has improved)</li>
+                            <li><strong>Achievable:</strong> ✓ (Improving collaboration is generally achievable)</li>
+                            <li><strong>Relevant:</strong> ✓ (Better collaboration aligns with team productivity and effectiveness)</li>
+                            <li><strong>Time-bound:</strong> ✗ (No specific timeframe is provided for when this improvement should occur)</li>
+                        </ul>
+                        
+                        <h4>2. Suggestions for Improvement:</h4>
+                        <p>To make your goal SMART, consider the following enhancements:</p>
+                        <ul>
+                            <li><strong>Be more specific:</strong> Detail exactly what aspects of collaboration you want to improve (e.g., communication frequency, meeting effectiveness, project handoffs)</li>
+                            <li><strong>Add measurable elements:</strong> Include metrics like "increase team collaboration scores on the quarterly survey by 15%" or "reduce project handoff errors by 30%"</li>
+                            <li><strong>Define a timeframe:</strong> Specify when you aim to achieve this goal, such as "by the end of Q2" or "within the next 6 months"</li>
+                        </ul>
+                        
+                        <p>Here is an example of a SMART goal:</p>
+                        <p>"Improve team collaboration by implementing a weekly structured check-in meeting and a shared project management tool, resulting in a 20% reduction in missed deadlines and a 15% increase in cross-team collaboration satisfaction scores by December 31, 2023."</p>
+                        
+                        <p>Please review these suggestions and update your goal accordingly. Feel free to reach out if you need further assistance in refining your goals.</p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
