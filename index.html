@@ -145,6 +145,28 @@
             to { opacity: 1; }
         }
     </style>
+    <script>
+        window.onload = () => {
+            // Check if Poe is available
+            if (window.Poe) {
+                // Register a handler for responses
+                window.Poe.registerHandler("myHandler", (result) => {
+                    alert(result.responses[0]?.content || "No response received");
+                });
+
+                // Send a message
+                window.Poe.sendUserMessage("@BotName Hello!", {
+                    handler: "myHandler"
+                }).then(response => {
+                    alert("Message sent successfully");
+                }).catch(error => {
+                    alert("Error: " + error.message);
+                });
+            } else {
+                alert("Poe Embed API not available.");
+            }
+        };
+    </script>
 </head>
 <body class="bg-gray-50 dark:bg-dark-bg text-gray-800 dark:text-dark-text min-h-screen">
     <div class="flex h-screen overflow-hidden">
