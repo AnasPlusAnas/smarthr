@@ -148,7 +148,9 @@
     <script>
         window.onload = () => {
             // Check if Poe is available
+            alert("window loaded")
             if (window.Poe) {
+                alert("window.poe")
                 // Register a handler for responses
                 window.Poe.registerHandler("myHandler", (result) => {
                     alert(result.responses[0]?.content || "No response received");
